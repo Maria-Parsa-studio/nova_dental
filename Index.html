@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bright Smile Dental Tucson - Book in 1 Minute</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef4f8;margin:0;padding:0}
+.container{max-width:430px;margin:0 auto;background:#fff;min-height:100vh}
+.header{background:#0e7ac0;color:#fff;text-align:center;padding:26px 16px}
+.header h1{margin:0;font-size:23px}
+.header p{margin:8px 0 0;font-size:13px;line-height:1.6}
+.badges{display:flex;gap:8px;justify-content:center;padding:10px;background:#e8f3fb;font-size:12px;color:#0e7ac0;font-weight:bold}
+.section{padding:16px}
+.btn{display:block;text-align:center;padding:15px;border-radius:12px;font-size:17px;font-weight:bold;text-decoration:none;margin:10px 0;border:none;width:100%;box-sizing:border-box;cursor:pointer}
+.call{background:#0e7ac0;color:#fff}
+.whatsapp{background:#25D366;color:#fff}
+.emailbtn{background:#fff;color:#0e7ac0;border:2px solid #0e7ac0}
+.card{border:1px solid #e5e5e5;border-radius:12px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 6px;font-size:16px}
+.price{color:#0e7ac0;font-weight:bold}
+.small{font-size:13px;color:#555;line-height:1.6}
+label{font-size:13px;font-weight:bold;display:block;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:15px;box-sizing:border-box}
+details{border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;margin:8px 0;font-size:14px}
+summary{font-weight:bold;cursor:pointer}
+table{width:100%;font-size:12px;border-collapse:collapse;margin-top:10px}
+th,td{border:1px solid #ddd;padding:6px;text-align:left}
+th{background:#0e7ac0;color:#fff}
+.footer{text-align:center;font-size:12px;color:#999;padding:20px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Bright Smile Dental Tucson</h1>
+<p>10371 N Oracle Rd, Tucson, AZ<br>Mon-Fri 8am-5pm | (520) 555-1234</p>
+</div>
+<div class="badges"><span>⭐ 4.9 Rated</span><span>•</span><span>Same-Day Available</span></div>
+<div class="section">
+<a class="btn call" href="tel:+15205551234">📞 Call Now to Book</a>
+<h2 style="font-size:18px">Book in 1 Minute</h2>
+<div class="card">
+<label>Full Name</label>
+<input id="name" placeholder="e.g. Sarah Miller">
+<label>Phone</label>
+<input id="phone" placeholder="e.g. 520-123-4567">
+<label>Choose Service</label>
+<select id="service">
+<option>Dental Cleaning & Checkup - $89 - 45 min</option>
+<option>Tooth Filling - $149 - 60 min</option>
+<option>Teeth Whitening - $199 - 60 min</option>
+<option>Emergency Visit - $99 - 30 min</option>
+<option>Implant Consult - Free - 20 min</option>
+</select>
+<label>Choose Day</label>
+<input type="date" id="date">
+<label>Choose Time</label>
+<select id="time">
+<option>9:00 AM</option>
+<option>10:00 AM</option>
+<option>11:00 AM</option>
+<option>1:00 PM</option>
+<option>2:00 PM</option>
+<option>3:00 PM</option>
+<option>4:00 PM</option>
+</select>
+<button class="btn whatsapp" onclick="bookWhatsApp()">💬 Confirm on WhatsApp</button>
+<button class="btn emailbtn" onclick="bookEmail()">✉️ Send via Email</button>
+<p class="small" style="text-align:center">Tap Confirm. Your name + service + day + time goes to clinic WhatsApp and Email automatically.</p>
+</div>
+<h2 style="font-size:18px">Services & Prices</h2>
+<details><summary>Dental Cleaning & Checkup - $89</summary><p class="small">45 min. Includes polish + X-ray. Same-week slots.</p></details>
+<details><summary>Tooth Filling - $149</summary><p class="small">60 min. Tooth-colored. Same-day available.</p></details>
+<details><summary>Teeth Whitening - $199</summary><p class="small">60 min. Instant result. For new patients.</p></details>
+<details><summary>Emergency Visit - $99</summary><p class="small">30 min. Pain relief today.</p></details>
+<a class="btn call" style="background:#fff;color:#0e7ac0;border:2px solid #0e7ac0" href="https://www.google.com/maps/search/?api=1&query=Oracle+Rd+Tucson+AZ">📍 Get Directions & Map</a>
+<div class="card"><div class="small">⭐⭐⭐⭐⭐<br>"Booked on WhatsApp in 1 minute. Very gentle." - Sarah M.</div></div>
+<h2 style="font-size:18px">For Owner: Client Excel List</h2>
+<div class="card">
+<p class="small">All bookings save here. Download as Excel (CSV).</p>
+<table id="list"><tr><th>Name</th><th>Service</th><th>Date</th><th>Time</th></tr></table>
+<button class="btn emailbtn" onclick="downloadExcel()">⬇️ Download Excel List</button>
+</div>
+</div>
+<div class="footer">Live sample by Maria Parsa<br>Booking pages for dental in 72h</div>
+</div>
+<script>
+document.getElementById('date').min = new Date().toISOString().split('T')[0];
+let bookings = JSON.parse(localStorage.getItem('dental_bookings')||'[]');
+function render(){let t=document.getElementById('list');t.innerHTML='<tr><th>Name</th><th>Service</th><th>Date</th><th>Time</th></tr>';bookings.forEach(b=>{t.innerHTML+='<tr><td>'+b.name+'</td><td>'+b.service.split(' - ')[0]+'</td><td>'+b.date+'</td><td>'+b.time+'</td></tr>'}); }
+render();
+function getData(){let n=document.getElementById('name').value.trim();let p=document.getElementById('phone').value.trim();let s=document.getElementById('service').value;let d=document.getElementById('date').value;let t=document.getElementById('time').value;if(!n||!d){alert('Please enter name and date');return null;}let b={name:n,phone:p,service:s,date:d,time:t};bookings.push(b);localStorage.setItem('dental_bookings',JSON.stringify(bookings));render();return b;}
+function bookWhatsApp(){let b=getData();if(!b)return;let text='Hi Bright Smile Dental, I want to book:%0AName: '+encodeURIComponent(b.name)+'%0APhone: '+encodeURIComponent(b.phone)+'%0AService: '+encodeURIComponent(b.service)+'%0ADate: '+b.date+'%0ATime: '+encodeURIComponent(b.time);window.open('https://wa.me/15205551234?text='+text,'_blank');}
+function bookEmail(){let b=getData();if(!b)return;let sub='New Booking - '+b.date+' '+b.time;let body='Name: '+b.name+'%0APhone: '+b.phone+'%0AService: '+b.service+'%0ADate: '+b.date+'%0ATime: '+b.time;window.location.href='mailto:info@brightsmiletucson.com?subject='+encodeURIComponent(sub)+'&body='+body;}
+function downloadExcel(){if(bookings.length===0){alert('No bookings yet');return;}let csv='Name,Phone,Service,Date,Time\n';bookings.forEach(b=>{csv+='"'+b.name+'","'+b.phone+'","'+b.service+'","'+b.date+'","'+b.time+'"\n';});let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='clients.csv';a.click();}
+</script>
+</body>
+</html>
